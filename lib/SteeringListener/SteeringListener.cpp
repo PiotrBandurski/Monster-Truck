@@ -5,7 +5,7 @@
 #include <Arduino.h>
 
 
-AsyncWebServer server(80);
+AsyncWebServer server(120);
 AsyncWebSocket ws("/ws");
 
 int* p_motur;
