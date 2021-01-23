@@ -5,7 +5,7 @@
 #include <Arduino.h>
 
 
-AsyncWebServer server(120);
+AsyncWebServer server(80);
 AsyncWebSocket ws("/ws");
 
 int* p_motur;
@@ -40,18 +40,6 @@ void onEvent(AsyncWebSocket * server, AsyncWebSocketClient * client, AwsEventTyp
           *p_kiera = s_kiera;
           *p_motur = s_motur;
           client->text("motur set to:" + String(*p_motur) + " kiera set to: " + String(*p_kiera));
-      } else if(action == "logToMe") {
-          bool b = parseString(actionParam);
-          if(b){
-            setLoggingClient(client);
-            client->text("Started logging 2 u");
-          } else {
-            setLoggingClient(NULL);
-            client->text("Stopped logging 2 u");
-          }
-      } else if(action == "setScan") {
-        //scan_i2c = parseString(actionParam);
-       // client->text("scan_i2c set to: " + boolToString(scan_i2c));
       } else {
           client->text("unknown command");
       }
