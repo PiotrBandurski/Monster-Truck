@@ -4,7 +4,7 @@
 
 void startCameraServer();
 
-void setupHttpCamera() {
+bool setupHttpCamera() {
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;
   config.ledc_timer = LEDC_TIMER_0;
@@ -32,8 +32,8 @@ void setupHttpCamera() {
     config.jpeg_quality = 10;
     config.fb_count = 2;
   } else {
-    config.frame_size = FRAMESIZE_SVGA;
-    config.jpeg_quality = 12;
+    config.frame_size = FRAMESIZE_SXGA;
+    config.jpeg_quality = 6;
     config.fb_count = 1;
   }
   
@@ -41,7 +41,7 @@ void setupHttpCamera() {
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
     Serial.printf("Camera init failed with error 0x%x", err);
-    return;
+    return false;
   }
 
   sensor_t * s = esp_camera_sensor_get();
@@ -54,4 +54,5 @@ void setupHttpCamera() {
   //drop down frame size for higher initial frame rate
   s->set_framesize(s, FRAMESIZE_QVGA);
   startCameraServer();
+  return true;
 }

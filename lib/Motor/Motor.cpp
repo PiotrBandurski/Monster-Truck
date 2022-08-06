@@ -15,7 +15,7 @@ Motor::Motor(uint8_t address, uint8_t motor, uint32_t freq)
 	else
 		_motor=_MOTOR_B;
 
-	Wire.begin();
+	Wire.begin(1,3);
 	
 	_address=address;
 
@@ -37,7 +37,7 @@ Motor::Motor(uint8_t address, uint8_t motor, uint32_t freq, uint8_t STBY_IO)
 	else
 		_motor=_MOTOR_B;
 
-	Wire.begin();
+	Wire.begin(1,3);
 	
 	_address=address;
 

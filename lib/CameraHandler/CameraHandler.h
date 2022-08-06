@@ -1,2 +1,2 @@
 
-void setupHttpCamera();
+bool setupHttpCamera();
